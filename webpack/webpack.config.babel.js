@@ -1,16 +1,28 @@
 import { resolve } from 'path'
 
-export default function(env) {
-
-    let config = {
-        entry: {
+const entry = (env) => {
+    if(env === 'dev') {
+        return {
             bundle: [
                 'react-hot-loader/patch',
                 'webpack-dev-server/client?http://localhost:8080',
                 'webpack/hot/only-dev-server',
                 resolve(__dirname, '../src', 'js', 'index.jsx')
             ]
-        },
+        }
+    } else {
+        return {
+            bundle: [
+                resolve(__dirname, '../src', 'js', 'index.jsx')
+            ]
+        }
+    }
+}
+
+export default function(env) {
+
+    let config = {
+        entry: entry(env),
         output: {
             filename: (env === 'prod')
                 ? 'js/[name].[chunkhash].js'
