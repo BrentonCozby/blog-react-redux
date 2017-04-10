@@ -8,7 +8,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack-dev-server --env=dev --config ./webpack/webpack.config.babel.js",
-        "prod": "rimraf dist && cross-env webpack -p --env=prod --config ./webpack/webpack.config.babel.js --progress --profile --colors && git add -A && git commit -m \"build bundle\""
+        "prod": "rimraf dist && cross-env webpack -p --env=prod --config ./webpack/webpack.config.babel.js --progress --profile --colors"
     },
     "dependencies": {
         "body-parser": "^1.17.1",
