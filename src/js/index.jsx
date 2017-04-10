@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import '../scss/index.scss'
-import './aos.js'
+import AOS from './aos.js'
+
+AOS.init()
 
 if (process.env.NODE_ENV === 'development') {
     // pages
@@ -13,24 +15,24 @@ if (process.env.NODE_ENV === 'development') {
     require('../views/partials/head.pug')
 }
 
-import {AppContainer} from 'react-hot-loader'
-// AppContainer is a necessary wrapper component for HMR
-
+import { AppContainer } from 'react-hot-loader'
 import App from './components/App.jsx'
 
 const render = (Component) => {
     ReactDOM.render(
         <AppContainer>
             <Component/>
-        </AppContainer>, document.getElementById('root')
-    )
+        </AppContainer>,
+    document.getElementById('root'))
 }
 
 render(App)
 
 // Hot Module Replacement API
 if (module.hot) {
+    // module.hot.accept()
     module.hot.accept('./components/App.jsx', () => {
-        render(App)
+        const nextApp = require('./components/App.jsx').default
+        render(nextApp)
     })
 }

@@ -15,12 +15,12 @@ import CopyPlugin from 'copy-webpack-plugin'
 import { resolve } from 'path'
 
 
-function plugins(env) {
+export default function plugins(env) {
 
     let config = [
         new HtmlPlugin({
-            template: resolve(__dirname, '../src', 'views', 'pages', 'index.pug'),
-            filename: 'index.html'
+            filename: 'index.html',
+            template: resolve(__dirname, '../src', 'views', 'pages', 'index.pug')
         }),
         new ExtractTextPlugin(
             (env === 'prod')
@@ -66,7 +66,12 @@ function plugins(env) {
         ])
     ]
 
+    if(env === 'dev') {
+        config.push(
+            new HotModuleReplacementPlugin(),
+            new NamedModulesPlugin()
+        )
+    }
+
     return config
 }
-
-export default plugins
