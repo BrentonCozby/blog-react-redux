@@ -7,13 +7,13 @@ const entry = (env) => {
                 'react-hot-loader/patch',
                 'webpack-dev-server/client?http://localhost:8080',
                 'webpack/hot/only-dev-server',
-                resolve(__dirname, '../src', 'js', 'index.jsx')
+                resolve(__dirname, '..', 'src', 'js', 'index.jsx')
             ]
         }
     } else {
         return {
             bundle: [
-                resolve(__dirname, '../src', 'js', 'index.jsx')
+                resolve(__dirname, '..', 'src', 'js', 'index.jsx')
             ]
         }
     }
@@ -28,7 +28,7 @@ export default function(env) {
                 ? 'js/[name].[chunkhash].js'
                 : 'js/[name].js',
             chunkFilename: 'js/[name].[chunkhash].js',
-            path: resolve(__dirname, '../dist'),
+            path: resolve(__dirname, '..', 'dist'),
             publicPath: ''
         },
         module: {
@@ -37,7 +37,7 @@ export default function(env) {
         plugins: require('./plugins.babel.js').default(env),
         resolve: {
             modules: [
-                resolve(__dirname, '../src'),
+                resolve(__dirname, '..', 'src'),
                 'node_modules'
             ]
         },
@@ -47,7 +47,7 @@ export default function(env) {
     if(env === 'dev') {
         config.devServer = {
             hot: true,
-            contentBase: resolve(__dirname, '../dist'),
+            contentBase: resolve(__dirname, '..', 'dist'),
             publicPath: ''
         }
     }

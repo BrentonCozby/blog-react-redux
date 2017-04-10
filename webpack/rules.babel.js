@@ -37,7 +37,8 @@ function rules(env) {
                 : ['style-loader', 'css-loader', 'sass-loader']
         }, {
             test: /\.(jpe?g|png|gif|svg|ico)$/,
-            use: [
+            use: (env === 'prod')
+            ? [
                 {
                     loader: 'url-loader',
                     options: {
@@ -48,6 +49,16 @@ function rules(env) {
                 }, {
                     loader: 'image-webpack-loader',
                     options: {}
+                }
+            ]
+            : [
+                {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 40000,
+                        name: '[name].[ext]',
+                        outputPath: 'images/'
+                    }
                 }
             ]
         }, {
