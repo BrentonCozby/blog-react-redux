@@ -4,7 +4,7 @@ import {
     NamedModulesPlugin
 } from 'webpack'
 
-import { Dir } from '../src/config.js'
+import { Dir } from '../config.js'
 
 export default {
     entry: {
@@ -29,12 +29,11 @@ export default {
                     options: {
                         presets: [
                             ['env', {modules: false}],
-                            'react'
+                            'react',
+                            'stage-2'
                         ],
                         plugins: [
-                            'react-hot-loader/babel',
-                            'transform-class-properties',
-                            'syntax-dynamic-import'
+                            'react-hot-loader/babel'
                         ]
                     }
                 }]
@@ -63,5 +62,5 @@ export default {
         contentBase: Dir.dist,
         publicPath: ''
     },
-    devtool: 'inline-source-map'
+    devtool: 'eval'
 }

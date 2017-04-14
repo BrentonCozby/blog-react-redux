@@ -9,7 +9,7 @@ import ResourceHintsPlugin from 'resource-hints-webpack-plugin'
 import FaviconsPlugin from 'favicons-webpack-plugin'
 import { resolve } from 'path'
 
-import { Dir } from '../src/config.js'
+import { Dir } from '../config.js'
 
 export default {
     entry: {
@@ -21,6 +21,7 @@ export default {
     output: {
         filename: 'js/[name].[chunkhash].js'
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -31,11 +32,8 @@ export default {
                     options: {
                         presets: [
                             ['env', {modules: false}],
-                            'react'
-                        ],
-                        plugins: [
-                            'transform-class-properties',
-                            'syntax-dynamic-import'
+                            'react',
+                            'stage-2'
                         ]
                     }
                 }]

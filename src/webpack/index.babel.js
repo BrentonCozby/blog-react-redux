@@ -1,10 +1,10 @@
 import { resolve } from 'path'
-import { DefinePlugin } from 'webpack'
+import { DefinePlugin, NoEmitOnErrorsPlugin } from 'webpack'
 import merge from 'webpack-merge'
 import HtmlPlugin from 'html-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 
-import { Dir } from '../src/config.js'
+import { Dir } from '../config.js'
 import devConfig from './dev.js'
 import prodConfig from './prod.js'
 
