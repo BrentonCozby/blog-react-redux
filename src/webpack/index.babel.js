@@ -9,11 +9,10 @@ import devConfig from './dev.js'
 import prodConfig from './prod.js'
 
 const TARGET = process.env.npm_lifecycle_event
-const env = (TARGET === 'build:dev') ? 'dev' : 'prod'
+const env = (TARGET === 'dev') ? 'dev' : 'prod'
 
 let common = {
     output: {
-        chunkFilename: 'js/[name].[chunkhash].js',
         path: Dir.dist,
         publicPath: ''
     },

@@ -13,7 +13,7 @@ export default {
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
             'babel-polyfill',
-            resolve(Dir.src, 'js', 'index.jsx')
+            resolve(Dir.src, 'client', 'js', 'index.jsx')
         ]
     },
     output: {

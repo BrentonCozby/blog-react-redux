@@ -13,8 +13,6 @@
     "dependencies": {
         "axios": "^0.16.1",
         "babel-polyfill": "^6.23.0",
-        "dotenv": "^4.0.0",
-        "getenv": "^0.7.0",
         "pug": "^2.0.0-beta11",
         "react": "^15.5.3",
         "react-dom": "^15.5.3",

@@ -15,11 +15,12 @@ export default {
     entry: {
         bundle: [
             'babel-polyfill',
-            resolve(Dir.src, 'js', 'index.jsx')
+            resolve(Dir.src, 'client', 'js', 'index.jsx')
         ]
     },
     output: {
-        filename: 'js/[name].[chunkhash].js'
+        filename: 'js/[name].[chunkhash].js',
+        chunkFilename: 'js/[name].[chunkhash].js'
     },
     devtool: 'source-map',
     module: {
@@ -69,7 +70,7 @@ export default {
         ]
     },
     plugins: [
-        new FaviconsPlugin(resolve(Dir.public, 'b-icon.png')),
+        new FaviconsPlugin(resolve(Dir.public, 'images', 'TL-logo-blackbg.png')),
         new ExtractTextPlugin('style.[chunkhash].css'),
         new optimize.CommonsChunkPlugin({
             name: 'vendor',

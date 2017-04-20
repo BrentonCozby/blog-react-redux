@@ -1,0 +1,13 @@
+.NewPostForm {
+    width: 100%;
+    padding: 20px;
+    padding-bottom: 140px;
+    min-height: 100vh;
+
+    @media all and (min-width: 786px) {
+        padding: 40px;
+        width: 50%;
+        position: absolute;
+        right: 0;
+    }
+}
