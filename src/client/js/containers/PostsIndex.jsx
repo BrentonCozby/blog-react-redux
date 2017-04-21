@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getPosts, getOnePost, toggleReadingMode } from '../actions/index.js'
+import {
+    getPosts,
+    getOnePost,
+    toggleReadingMode,
+    clearActivePost
+} from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
 class PostsIndex extends Component {
 
     componentWillMount() {
+        this.props.clearActivePost()
         this.props.getPosts()
     }
 
@@ -60,4 +66,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getPosts, getOnePost, toggleReadingMode })(PostsIndex)
+export default connect(
+    mapStateToProps,
+    {
+        getPosts,
+        getOnePost,
+        toggleReadingMode,
+        clearActivePost
+    }
+)(PostsIndex)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getOnePost, deletePost } from '../actions/index.js'
+import { getOnePost, deletePost, setPhotoUrl } from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
 class PostDetail extends Component {
@@ -12,6 +12,9 @@ class PostDetail extends Component {
 
     componentWillMount() {
         this.props.getOnePost(this.props.match.params.id)
+        .then(res => {
+            this.props.setPhotoUrl(res.payload.data.image)
+        })
     }
 
     onDelete = () => {
@@ -50,5 +53,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { getOnePost, deletePost }
+    { getOnePost, deletePost, setPhotoUrl }
 )(PostDetail)

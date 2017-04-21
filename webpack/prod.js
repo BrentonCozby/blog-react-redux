@@ -15,7 +15,7 @@ export default {
     entry: {
         bundle: [
             'babel-polyfill',
-            resolve(Dir.src, 'client', 'js', 'index.jsx')
+            resolve(Dir.client, 'js', 'index.jsx')
         ]
     },
     output: {
@@ -70,7 +70,7 @@ export default {
         ]
     },
     plugins: [
-        new FaviconsPlugin(resolve(Dir.public, 'images', 'TL-logo-blackbg.png')),
+        new FaviconsPlugin(resolve(Dir.images, 'TL-logo-blackbg.png')),
         new ExtractTextPlugin('style.[chunkhash].css'),
         new optimize.CommonsChunkPlugin({
             name: 'vendor',

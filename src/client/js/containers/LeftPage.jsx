@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import techlaunchLogo from '../../../../public/images/techlaunch-blackbg.png'
-import defaultPhoto from '../../../../public/images/defaultPhoto.jpg'
-import xButton from '../../../../public/images/x.png'
+import techlaunchLogo from '../../../../assets/images/techlaunch-blackbg.png'
+import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg'
+import xButton from '../../../../assets/images/x.png'
 
 import { toggleReadingMode } from '../actions/index.js'
 
@@ -30,7 +30,7 @@ class LeftPage extends Component {
                     </div>
                 </div>
                 <div className="bottom">
-                    <h1 className="heading">{headingText || 'Welcome to Techlaunch'}</h1>
+                    <h1 className="heading">{headingText || 'Welcome to the Techlaunch Blog'}</h1>
                     {date && <p className="date">{date}</p>}
                     <div className="social-media-links">
                         <a target="_blank" rel="noopener" href="http://www.facebook.com/FVITech/">

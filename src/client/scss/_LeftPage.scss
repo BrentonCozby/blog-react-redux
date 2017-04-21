@@ -96,13 +96,20 @@
 }
 
 .LeftPage .bottom .heading {
-    font-size: 40px;
+    font-size: 30px;
     color: #fff;
     text-shadow: 0 1px 5px #000;
-    font-family: $lato;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: $main-font;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 1.5;
+    text-align: center;
     margin: 0;
+
+    @media all and (min-width: 768px) {
+        font-size: 40px;
+    }
 }
 
 .LeftPage .bottom .date {

@@ -12,6 +12,8 @@ export default function(state = INITAL_STATE, action) {
             return {...state, active: action.payload.data}
         case 'DELETE_POST':
             return {...state, active: null}
+        case 'CLEAR_ACTIVE_POST':
+            return {...state, active: null}
         case 'TOGGLE_READING_MODE':
             return {...state, isReadingMode: !state.isReadingMode}
         default:

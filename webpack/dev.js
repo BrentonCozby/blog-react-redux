@@ -10,10 +10,11 @@ export default {
     entry: {
         bundle: [
             'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:8080',
+            'webpack-hot-middleware/client',
+            // 'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
             'babel-polyfill',
-            resolve(Dir.src, 'client', 'js', 'index.jsx')
+            resolve(Dir.client, 'js', 'index.jsx')
         ]
     },
     output: {
@@ -57,10 +58,10 @@ export default {
         new HotModuleReplacementPlugin(),
         new NamedModulesPlugin()
     ],
-    devServer: {
+    devServer : {
         hot: true,
         contentBase: Dir.dist,
-        publicPath: ''
+        publicPath: '/'
     },
     devtool: 'eval'
 }

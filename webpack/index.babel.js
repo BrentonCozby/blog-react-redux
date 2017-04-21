@@ -9,12 +9,12 @@ import devConfig from './dev.js'
 import prodConfig from './prod.js'
 
 const TARGET = process.env.npm_lifecycle_event
-const env = (TARGET === 'dev') ? 'dev' : 'prod'
+const env = (TARGET === 'dev' || TARGET === 'dev-server') ? 'dev' : 'prod'
 
 let common = {
     output: {
         path: Dir.dist,
-        publicPath: ''
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -45,9 +45,9 @@ let common = {
             }
         }),
         new CopyPlugin([
-            {from: resolve(Dir.src, 'crossdomain.xml')},
-            {from: resolve(Dir.src, 'humans.txt')},
-            {from: resolve(Dir.src, 'robots.txt')}
+            {from: resolve(Dir.client, 'crossdomain.xml')},
+            {from: resolve(Dir.client, 'humans.txt')},
+            {from: resolve(Dir.client, 'robots.txt')}
         ])
     ],
     resolve: {

@@ -1,6 +1,6 @@
 $fvi-blue: #5bf;
 $dark-blue: #048;
-$lato: 'Lato', sans-serif;
+$main-font: 'Hind', sans-serif;
 
 .container {
     width: 100%;
@@ -8,20 +8,4 @@ $lato: 'Lato', sans-serif;
     margin: auto;
     padding-left: 20px;
     padding-right: 20px;
-}
-
-.back-arrow {
-    position: absolute;
-    left: 10px;
-    top: 60px;
-    padding: 15px;
-    cursor: pointer;
-    color: #555;
-    font-size: 30px;
-    line-height: 1;
-    z-index: 1;
-
-    &:hover {
-        color: $fvi-blue;
-    }
 }

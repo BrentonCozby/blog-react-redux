@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import techlaunchLogo from '../../../../public/images/techlaunch-whitebg.png'
+import techlaunchLogo from '../../../../assets/images/techlaunch-whitebg.png'
 
 class Menu extends Component {
 

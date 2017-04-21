@@ -47,8 +47,21 @@ export function setHeadingText(text) {
     }
 }
 
+export function setPhotoUrl(url) {
+    return {
+        type: 'SET_PHOTO_URL',
+        payload: url
+    }
+}
+
 export function toggleReadingMode() {
     return {
         type: 'TOGGLE_READING_MODE'
+    }
+}
+
+export function clearActivePost() {
+    return {
+        type: 'CLEAR_ACTIVE_POST'
     }
 }
