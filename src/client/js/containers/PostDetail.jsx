@@ -13,7 +13,7 @@ class PostDetail extends Component {
     componentWillMount() {
         this.props.getOnePost(this.props.match.params.id)
         .then(res => {
-            this.props.setPhotoUrl(res.payload.data.image)
+            this.props.setPhotoUrl(this.props.active.image)
         })
     }
 
@@ -26,16 +26,16 @@ class PostDetail extends Component {
 
     render() {
         const { active, isReadingMode } = this.props
-        let title, categories, content
+        let title, tags, content
         if(active) {
             title = active.title
-            categories = active.categories
+            tags = active.tags
             content = active.content
         }
         return (
             <div className={(isReadingMode) ? 'PostDetail reading-mode' : 'PostDetail'}>
                 <h2 className="PostDetail-title">{title || null}</h2>
-                <p className="PostDetail-categories">{categories || null}</p>
+                <p className="PostDetail-tags">{tags || null}</p>
                 <div className="PostDetail-content">{content || null}</div>
                 <button onClick={this.onDelete} className="delete">Delete</button>
                 <Footer />

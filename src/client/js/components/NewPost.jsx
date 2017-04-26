@@ -31,7 +31,7 @@ const renderField = ({ element, input, label, type, meta: { touched, error } }) 
                 <textarea name={name} />
             }
             {(element === 'date') &&
-                <input name={name} value={(new Date()).getTime()} />
+                <input name={name} type={type} value={(new Date()).getDate()} />
             }
             {touched && ((error && <span>{error}</span>))}
         </div>
@@ -54,12 +54,12 @@ class NewPost extends Component {
     render() {
         const { handleSubmit, submitting, createPost } = this.props
         return (
-            <div className="NewPost">
+            <div className="NewPostForm">
                 <form onSubmit={handleSubmit(this.onFormSubmit)} id="NewPostForm">
                     <Field name="title" component={renderField} type="text" label="title" element="input" />
                     <Field name="image" component={renderField} type="text" label="image" element="input" />
-                    <Field name="date" component={renderField} type="text" label="date" element="input" />
-                    <Field name="categories" component={renderField} type="text" label="categories" element="input" />
+                    <Field name="date" component={renderField} type="date" label="date" element="input" />
+                    <Field name="tags" component={renderField} type="text" label="tags" element="input" />
                     <Field name="content" component={renderField} label="content" element="input" />
                     <button className="submit" type="submit" disabled={submitting}>Submit</button>
                     <Link to="/"><button className="cancel">Cancel</button></Link>

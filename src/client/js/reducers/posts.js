@@ -7,9 +7,23 @@ const INITAL_STATE = {
 export default function(state = INITAL_STATE, action) {
     switch(action.type) {
         case 'GET_POSTS':
-            return {...state, all: action.payload.data}
+            let allPosts = []
+            for(let id in action.payload) {
+                allPosts.push({
+                    id,
+                    title: action.payload[id].title,
+                    date: action.payload[id].date,
+                    image: action.payload[id].image,
+                    tags: action.payload[id].tags,
+                    content: action.payload[id].content
+                })
+            }
+            return {...state, all: allPosts}
         case 'GET_ONE_POST':
-            return {...state, active: action.payload.data}
+            let onePost = state.all.find(posts => {
+                return posts.id === action.payload
+            })
+            return {...state, active: onePost}
         case 'DELETE_POST':
             return {...state, active: null}
         case 'CLEAR_ACTIVE_POST':

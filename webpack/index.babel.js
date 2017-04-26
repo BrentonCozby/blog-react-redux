@@ -9,7 +9,7 @@ import devConfig from './dev.js'
 import prodConfig from './prod.js'
 
 const TARGET = process.env.npm_lifecycle_event
-const env = (TARGET === 'dev' || TARGET === 'dev-server') ? 'dev' : 'prod'
+const env = (TARGET === 'dev') ? 'dev' : 'prod'
 
 let common = {
     output: {

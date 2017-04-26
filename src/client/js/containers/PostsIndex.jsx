@@ -2,11 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg'
 import {
     getPosts,
     getOnePost,
     toggleReadingMode,
-    clearActivePost
+    clearActivePost,
+    setPhotoUrl
 } from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
@@ -15,6 +17,7 @@ class PostsIndex extends Component {
     componentWillMount() {
         this.props.clearActivePost()
         this.props.getPosts()
+        this.props.setPhotoUrl(defaultPhoto)
     }
 
     renderPostSnippet = (post) => {
@@ -72,6 +75,7 @@ export default connect(
         getPosts,
         getOnePost,
         toggleReadingMode,
-        clearActivePost
+        clearActivePost,
+        setPhotoUrl
     }
 )(PostsIndex)

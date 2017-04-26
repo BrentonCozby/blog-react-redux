@@ -1,43 +1,29 @@
-import axios from 'axios'
-
-const rootUrl = `http://reduxblog.herokuapp.com/api`
-const API_KEY = `?key=asluighalsdfk`
+import { postsRef } from '../firebase.js'
 
 export function getPosts() {
-
-    const request = axios.get(`${rootUrl}/posts${API_KEY}`)
-
-    return {
-        type: 'GET_POSTS',
-        payload: request
+    return dispatch => {
+        postsRef.on('value', snapshot => {
+            dispatch({
+                type: 'GET_POSTS',
+                payload: snapshot.val()
+            })
+        })
     }
 }
 
-export function createPost(props) {
-    const request = axios.post(`${rootUrl}/posts${API_KEY}`, props)
-
-    return {
-        type: 'CREATE_POST',
-        payload: request
-    }
+export function createPost(post) {
+    return dispatch => postsRef.push(post)
 }
 
 export function getOnePost(id) {
-    const request = axios.get(`${rootUrl}/posts/${id}${API_KEY}`)
-
-    return {
+    return Promise.resolve({
         type: 'GET_ONE_POST',
-        payload: request
-    }
+        payload: id
+    })
 }
 
 export function deletePost(id) {
-    const request = axios.delete(`${rootUrl}/posts/${id}${API_KEY}`)
-
-    return {
-        type: 'DELETE_POST',
-        payload: request
-    }
+    return dispatch => postsRef.child(id).remove()
 }
 
 export function setHeadingText(text) {
