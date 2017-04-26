@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getOnePost, deletePost, setPhotoUrl } from '../actions/index.js'
+import {
+    getOnePost,
+    deletePost,
+    setPhotoUrl,
+    setHeadingText,
+    toggleReadingMode
+} from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
 class PostDetail extends Component {
@@ -14,6 +20,7 @@ class PostDetail extends Component {
         this.props.getOnePost(this.props.match.params.id)
         .then(res => {
             this.props.setPhotoUrl(this.props.active.image)
+            this.props.setHeadingText(this.props.active.title)
         })
     }
 
@@ -25,7 +32,7 @@ class PostDetail extends Component {
     }
 
     render() {
-        const { active, isReadingMode } = this.props
+        const { active, isReadingMode, toggleReadingMode } = this.props
         let title, tags, content
         if(active) {
             title = active.title
@@ -34,6 +41,9 @@ class PostDetail extends Component {
         }
         return (
             <div className={(isReadingMode) ? 'PostDetail reading-mode' : 'PostDetail'}>
+                {isReadingMode &&
+                    <div className="back-arrow" onClick={toggleReadingMode}>←</div>
+                }
                 <h2 className="PostDetail-title">{title || null}</h2>
                 <p className="PostDetail-tags">{tags || null}</p>
                 <div className="PostDetail-content">{content || null}</div>
@@ -53,5 +63,11 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps,
-    { getOnePost, deletePost, setPhotoUrl }
+    {
+        getOnePost,
+        deletePost,
+        setPhotoUrl,
+        setHeadingText,
+        toggleReadingMode
+    }
 )(PostDetail)

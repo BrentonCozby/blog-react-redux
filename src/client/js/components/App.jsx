@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 // components
-import Menu from './Menu.jsx'
+import Menu from '../containers/Menu.jsx'
 import PostsIndex from '../containers/PostsIndex.jsx'
 import NewPost from './NewPost.jsx'
 import PostDetail from '../containers/PostDetail.jsx'

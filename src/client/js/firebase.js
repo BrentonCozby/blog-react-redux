@@ -42,3 +42,13 @@ export function loginToFirebase() {
         })
     })
 }
+
+export function logoutOfFirebase() {
+    return new Promise((resolve, reject) => {
+        firebase.auth().signOut().then(function() {
+            resolve()
+        }, function(error) {
+            reject(error)
+        })
+    })
+}

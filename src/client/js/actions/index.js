@@ -51,3 +51,16 @@ export function clearActivePost() {
         type: 'CLEAR_ACTIVE_POST'
     }
 }
+
+export function login(user) {
+    return {
+        type: 'LOGIN',
+        payload: user
+    }
+}
+
+export function logout() {
+    return {
+        type: 'LOGOUT'
+    }
+}

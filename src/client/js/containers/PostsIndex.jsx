@@ -8,7 +8,8 @@ import {
     getOnePost,
     toggleReadingMode,
     clearActivePost,
-    setPhotoUrl
+    setPhotoUrl,
+    setHeadingText
 } from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
@@ -18,6 +19,7 @@ class PostsIndex extends Component {
         this.props.clearActivePost()
         this.props.getPosts()
         this.props.setPhotoUrl(defaultPhoto)
+        this.props.setHeadingText(null)
     }
 
     renderPostSnippet = (post) => {
@@ -76,6 +78,7 @@ export default connect(
         getOnePost,
         toggleReadingMode,
         clearActivePost,
-        setPhotoUrl
+        setPhotoUrl,
+        setHeadingText
     }
 )(PostsIndex)

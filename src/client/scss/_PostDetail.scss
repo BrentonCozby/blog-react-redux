@@ -1,11 +1,12 @@
 .PostDetail {
     width: 100%;
     padding: 20px;
-    padding-bottom: 140px;
+    padding-bottom: 170px;
     min-height: 100vh;
 
     @media all and (min-width: 786px) {
         padding: 40px;
+        padding-bottom: 170px;
         width: 50%;
         position: absolute;
         right: 0;
@@ -14,20 +15,21 @@
             width: 100%;
         }
     }
+
+    &-tags {
+        background-color: rgba(85, 187, 255, .8);
+        display: inline-block;
+        padding: 4px 8px;
+        margin: 0;
+        border-radius: 15px;
+    }
+
+    &-content {
+        margin: 20px 0;
+    }
 }
 
-.back-arrow {
-    position: absolute;
-    left: 10px;
-    top: 60px;
-    padding: 15px;
-    cursor: pointer;
-    color: #555;
-    font-size: 40px;
-    line-height: 1;
-    z-index: 1;
-
-    &:hover {
-        color: $fvi-blue;
-    }
+.PostDetail.reading-mode {
+    padding-left: 80px;
+    padding-right: 80px;
 }
