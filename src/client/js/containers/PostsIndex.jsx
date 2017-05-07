@@ -51,7 +51,6 @@ class PostsIndex extends Component {
     }
 
     render() {
-        console.log(this.props.allPosts);
         const { allPosts, isReadingMode, toggleReadingMode } = this.props
         return (
             <div className={(isReadingMode) ? 'PostsIndex reading-mode' : 'PostsIndex'}>
