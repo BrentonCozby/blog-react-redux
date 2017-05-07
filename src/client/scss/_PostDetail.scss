@@ -19,20 +19,35 @@
     &-post-container {
         max-width: 600px;
         margin: auto;
+        line-height: 1.5;
+
+        p, a, li {
+            font-size: 18px;
+        }
     }
 
     &-title {
-        font-size: 32px;
+        font-size: 38px;
         text-align: center;
-    }
-
-    &-content {
-        margin: 20px 0;
     }
 }
 
 .PostDetail.reading-mode {
 
+    .PostDetail-post-container {
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.5;
+
+        p, a, li {
+            font-size: 22px;
+        }
+    }
+
+    .PostDetail-title {
+        font-size: 54px;
+        text-align: center;
+    }
 }
 
 .PostDetail .edit-btn,
