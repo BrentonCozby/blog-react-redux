@@ -20,7 +20,8 @@ export default {
     },
     output: {
         filename: 'js/[name].[chunkhash].js',
-        chunkFilename: 'js/[name].[chunkhash].js'
+        chunkFilename: 'js/[name].[chunkhash].js',
+        publicPath: '/blog-react-redux/'
     },
     devtool: 'source-map',
     module: {

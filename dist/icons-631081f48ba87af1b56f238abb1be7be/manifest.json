@@ -1,6 +1,6 @@
 {
-  "name": "blog-react-redux-mongo-express",
-  "short_name": "blog-react-redux-mongo-express",
+  "name": "blog-react-redux",
+  "short_name": "blog-react-redux",
   "description": null,
   "dir": "auto",
   "lang": "en-US",
