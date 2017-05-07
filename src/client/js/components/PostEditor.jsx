@@ -6,6 +6,7 @@ import 'froala-editor/css/froala_editor.pkgd.min.css'
 import 'font-awesome/css/font-awesome.css'
 import FroalaEditor from 'react-froala-wysiwyg'
 
+import { rootUrl } from '../../../../config.js'
 import { createPost, updatePost, toggleReadingMode } from '../actions/index.js'
 import Footer from './Footer.jsx'
 
@@ -52,7 +53,7 @@ class PostEditor extends Component {
 
         if(this.state.postId) {
             this.props.updatePost({...this.state})
-            this.context.router.history.push(`/posts/${this.state.postId}`)
+            this.context.router.history.push(`${rootUrl}/posts/${this.state.postId}`)
         }
         else {
             const date = new Date().toDateString().split(' ').slice(1).join(' ')
@@ -64,7 +65,7 @@ class PostEditor extends Component {
                 content: this.state.content
             })
             .then(() => {
-                this.context.router.history.push('/')
+                this.context.router.history.push(rootUrl)
             })
         }
     }
@@ -77,10 +78,10 @@ class PostEditor extends Component {
         const content = this.state.content
         return (
             <div className="PostEditor">
-                <form onSubmit={e => this.onFormSubmit(e)} id="PostEditorForm">
+                <form onSubmit={e => this.onFormSubmit(e)}>
                     <div>
                         <button className="save-btn" type="submit">Save</button>
-                        <Link to="/"><button className="cancel-btn">Cancel</button></Link>
+                        <Link to={rootUrl}><button className="cancel-btn">Cancel</button></Link>
                     </div>
                     <label>Post Title</label>
                     <input

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { rootUrl } from '../../../../config.js'
 import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg'
 import {
     getPosts,
@@ -37,7 +38,7 @@ class PostsIndex extends Component {
         }
         return (
             <Link
-                to={`/posts/${post.id}`}
+                to={`${rootUrl}/posts/${post.id}`}
                 className="post-snippet"
                 key={post.id}
                 style={style}

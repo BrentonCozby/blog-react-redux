@@ -5,6 +5,7 @@ import 'froala-editor/js/froala_editor.pkgd.min.js'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import 'font-awesome/css/font-awesome.css'
 import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView'
+import { rootUrl } from '../../../../config.js'
 
 import {
     getPosts,
@@ -36,7 +37,7 @@ class PostDetail extends Component {
     onDelete = () => {
         this.props.deletePost(this.props.match.params.id)
         .then(() => {
-            this.context.router.history.push('/')
+            this.context.router.history.push(rootUrl)
         })
     }
 
@@ -55,7 +56,7 @@ class PostDetail extends Component {
                 <div className="PostDetail-post-container">
                     {userId && (
                         <div>
-                            <Link to={`/posts/editor`} className="edit-btn">Edit</Link>
+                            <Link to={`${rootUrl}/posts/editor`} className="edit-btn">Edit</Link>
                             <a onClick={this.onDelete} className="delete-btn">Delete</a>
                         </div>
                     )}

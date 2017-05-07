@@ -6,6 +6,7 @@ import techlaunchLogo from '../../../../assets/images/techlaunch-blackbg.png'
 import defaultPhoto from '../../../../assets/images/defaultPhoto.jpg'
 import xButton from '../../../../assets/images/x.png'
 
+import { rootUrl } from '../../../../config.js'
 import { toggleReadingMode } from '../actions/index.js'
 
 const setPhoto = (url) => ({
@@ -23,7 +24,7 @@ class LeftPage extends Component {
             >
                 <div className="filter"></div>
                 <div className="top">
-                    <Link to="/"><img src={techlaunchLogo} alt="Techlaunch logo" className="logo"/></Link>
+                    <Link to={rootUrl}><img src={techlaunchLogo} alt="Techlaunch logo" className="logo"/></Link>
                     <div className="close" onClick={toggleReadingMode}>
                         <img src={xButton} alt="go to reading mode"/>
                         <p>reading mode</p>

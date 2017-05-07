@@ -1,5 +1,7 @@
 import { resolve } from 'path'
 
+const rootUrl = (process.env.NODE_ENV === 'development') ? '' : '/blog-react-redux'
+
 const Dir = {
   src: resolve(__dirname, 'src'),
   client: resolve(__dirname, 'src', 'client'),
@@ -10,4 +12,6 @@ const Dir = {
   images: resolve(__dirname, 'assets', 'images')
 }
 
-export { Dir }
+
+
+export { Dir, rootUrl }
