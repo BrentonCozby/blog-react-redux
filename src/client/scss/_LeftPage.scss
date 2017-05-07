@@ -17,15 +17,6 @@
             left: -50%;
         }
     }
-
-    .filter {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
 }
 
 .LeftPage .top {
@@ -91,7 +82,7 @@
     padding: 20px;
 
     @media all and (min-width: 768px) {
-        padding: 80px;
+        padding: 40px;
     }
 }
 
@@ -120,7 +111,7 @@
 .LeftPage .bottom .social-media-links {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 30px;
 
     a {
         margin: 0 15px;

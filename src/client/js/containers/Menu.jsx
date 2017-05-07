@@ -52,13 +52,13 @@ class Menu extends Component {
                 </div>
                 <div className={(this.state.isMenuVisible) ? 'Menu visible' : 'Menu'}>
                     <img src={techlaunchLogo} alt="Techlaunch Logo" className="Menu-logo"/>
-                    <Link onClick={this.toggleMenu} to={`${rootUrl}/posts`} className="Menu-item">All Posts</Link>
+                    <Link onClick={this.toggleMenu} to={`${rootUrl}/posts`} className="Menu-item">View All Posts</Link>
                     {userId &&
                         <a onClick={this.onCreatePostClick} className="Menu-item">Create Post</a>
                     }
                     {(userId)
                         ? <a onClick={this.logout} className="Menu-item">Logout</a>
-                        : <a onClick={this.login} className="Menu-item">Login</a>
+                        : <a onClick={this.login} className="Menu-item">Admin Login</a>
                     }
                     {userId &&
                         <p className="Menu-name">Logged in as {name}</p>

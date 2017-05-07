@@ -10,7 +10,11 @@ import { rootUrl } from '../../../../config.js'
 import { toggleReadingMode } from '../actions/index.js'
 
 const setPhoto = (url) => ({
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .8) 85%), url(${url})`
+    backgroundImage: `
+        linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .8) 100%),
+        linear-gradient(rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, 0) 30%),
+        url(${url})
+    `
 })
 
 class LeftPage extends Component {
@@ -22,7 +26,6 @@ class LeftPage extends Component {
                 className={(isReadingMode) ? 'LeftPage reading-mode' : 'LeftPage'}
                 style={setPhoto(photoUrl || defaultPhoto)}
             >
-                <div className="filter"></div>
                 <div className="top">
                     <Link to={rootUrl}><img src={techlaunchLogo} alt="Techlaunch logo" className="logo"/></Link>
                     <div className="close" onClick={toggleReadingMode}>
@@ -31,7 +34,7 @@ class LeftPage extends Component {
                     </div>
                 </div>
                 <div className="bottom">
-                    <h1 className="heading">{headingText || 'Welcome to the Techlaunch Blog'}</h1>
+                    <h1 className="heading">{headingText}</h1>
                     {date && <p className="date">{date}</p>}
                     <div className="social-media-links">
                         <a target="_blank" rel="noopener" href="http://www.facebook.com/FVITech/">

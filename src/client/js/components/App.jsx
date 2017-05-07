@@ -4,7 +4,7 @@ import { rootUrl } from '../../../../config.js'
 
 import Menu from '../containers/Menu.jsx'
 import PostsIndex from '../containers/PostsIndex.jsx'
-import PostEditor from './PostEditor.jsx'
+import PostEditor from '../containers/PostEditor.jsx'
 import PostDetail from '../containers/PostDetail.jsx'
 import NoMatch from './NoMatch.jsx'
 import LeftPage from '../containers/LeftPage.jsx'

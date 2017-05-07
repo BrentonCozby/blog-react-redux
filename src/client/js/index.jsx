@@ -1,22 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AppContainer as ReactHotLoader } from 'react-hot-loader'
 
+import { rootUrl } from '../../../config.js'
 import configStore from './store.js'
 import App from './components/App.jsx'
 import '../scss/index.scss'
 
 // import views so they can live-reload during development
 if (process.env.NODE_ENV === 'development') {
-    // const glob = require('glob')
-    // const { resolve } = require('path')
-    //
-    // glob.sync( '../views/**/*.pug' ).forEach( function( view ) {
-    //   require( resolve( view ) );
-    // });
-
     // pages
     require('../../views/pages/index.pug')
 
@@ -27,16 +21,13 @@ if (process.env.NODE_ENV === 'development') {
 
 const store = configStore()
 
-const render = (routes) => {
-
-    routes = routes || require('./routes.jsx').default
-
+const render = (Component) => {
     if(process.env.NODE_ENV === 'development') {
         ReactDOM.render(
             <ReactHotLoader>
                 <Provider store={store}>
                     <Router>
-                        {routes}
+                        <Route path={rootUrl} component={Component} />
                     </Router>
                 </Provider>
             </ReactHotLoader>,
@@ -45,24 +36,19 @@ const render = (routes) => {
         ReactDOM.render(
             <Provider store={store}>
                 <Router>
-                    {routes}
+                    <Route path={rootUrl} component={Component} />
                 </Router>
             </Provider>,
         document.getElementById('root'))
     }
 }
 
-render()
+render(App)
 
 // Hot Module Replacement API
 if (module.hot) {
-    // module.hot.accept()
     module.hot.accept('./components/App.jsx', () => {
-        const nextRoutes = require('./routes.jsx').default
-        render(nextRoutes)
+        const nextApp = require('./components/App.jsx').default
+        render(nextApp)
     })
-    module.hot.accept('./routes.jsx', () => {
-        const nextRoutes = require('./routes.jsx').default
-        render(nextRoutes)
-    });
 }
