@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 // components
 import Menu from '../containers/Menu.jsx'
 import PostsIndex from '../containers/PostsIndex.jsx'
-import NewPost from './NewPost.jsx'
+import PostEditor from './PostEditor.jsx'
 import PostDetail from '../containers/PostDetail.jsx'
 import NoMatch from './NoMatch.jsx'
 
@@ -27,7 +27,8 @@ class App extends Component {
                         <Redirect to={`${match}/posts`} />
                     )} />
                     <Route exact path={`${match}/posts`} component={PostsIndex} />
-                    <Route exact path={`${match}/posts/new`} component={NewPost} />
+                    <Route exact path={`${match}/posts/editor`} component={PostEditor} />
+                    <Route exact path={`${match}/posts/new`} component={PostEditor} />
                     <Route exact path={`${match}/posts/:id`} component={PostDetail} />
                     <Route component={NoMatch}/>
                 </Switch>

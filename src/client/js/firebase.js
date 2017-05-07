@@ -13,6 +13,7 @@ firebase.initializeApp(config)
 var db = firebase.database()
 var postsRef = db.ref('posts/')
 
+export { db }
 export { postsRef }
 
 export function saveNewPost(post) {

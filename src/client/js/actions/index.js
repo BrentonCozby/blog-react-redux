@@ -1,4 +1,4 @@
-import { postsRef } from '../firebase.js'
+import { db, postsRef } from '../firebase.js'
 
 export function getPosts() {
     return dispatch => {
@@ -16,27 +16,33 @@ export function createPost(post) {
 }
 
 export function getOnePost(id) {
-    return Promise.resolve({
-        type: 'GET_ONE_POST',
-        payload: id
-    })
+    return dispatch => {
+        db.ref(`posts/${id}`).on('value', snapshot => {
+            dispatch({
+                type: 'GET_ONE_POST',
+                payload: {...snapshot.val(), id}
+            })
+        })
+    }
+}
+
+export function updatePost(postData) {
+    let { postId, title, image, date, content } = postData
+    return dispatch => {
+        db.ref(`posts/${postId}`).set({
+            title, image, date, content
+        })
+    }
 }
 
 export function deletePost(id) {
     return dispatch => postsRef.child(id).remove()
 }
 
-export function setHeadingText(text) {
+export function setLeftPage(postData) {
     return {
-        type: 'SET_HEADING_TEXT',
-        payload: text
-    }
-}
-
-export function setPhotoUrl(url) {
-    return {
-        type: 'SET_PHOTO_URL',
-        payload: url
+        type: 'SET_LEFT_PAGE',
+        payload: postData
     }
 }
 

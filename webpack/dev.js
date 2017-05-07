@@ -60,7 +60,8 @@ export default {
     devServer : {
         hot: true,
         contentBase: Dir.dist,
-        publicPath: '/'
+        publicPath: '/',
+        historyApiFallback: true
     },
     devtool: 'eval'
 }

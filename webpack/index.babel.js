@@ -1,5 +1,9 @@
 import { resolve } from 'path'
-import { DefinePlugin, NoEmitOnErrorsPlugin } from 'webpack'
+import {
+    DefinePlugin,
+    NoEmitOnErrorsPlugin,
+    ProvidePlugin
+} from 'webpack'
 import merge from 'webpack-merge'
 import HtmlPlugin from 'html-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
@@ -31,6 +35,9 @@ let common = {
             }, {
                 test: /\.(pug)$/,
                 use: ['pug-loader']
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     },
@@ -44,8 +51,11 @@ let common = {
                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
             }
         }),
+        new ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
         new CopyPlugin([
-            {from: resolve(Dir.client, 'crossdomain.xml')},
             {from: resolve(Dir.client, 'humans.txt')},
             {from: resolve(Dir.client, 'robots.txt')}
         ])

@@ -8,8 +8,7 @@ import {
     getOnePost,
     toggleReadingMode,
     clearActivePost,
-    setPhotoUrl,
-    setHeadingText
+    setLeftPage
 } from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
 
@@ -18,8 +17,11 @@ class PostsIndex extends Component {
     componentWillMount() {
         this.props.clearActivePost()
         this.props.getPosts()
-        this.props.setPhotoUrl(defaultPhoto)
-        this.props.setHeadingText(null)
+        this.props.setLeftPage({
+            image: defaultPhoto,
+            title: null,
+            date: null
+        })
     }
 
     renderPostSnippet = (post) => {
@@ -41,8 +43,7 @@ class PostsIndex extends Component {
                 style={style}
                 onClick={setActivePost}
             >
-                {post.tags && <p className="post-snippet-date">{post.date}</p>}
-                {post.tags && <p className="post-snippet-tags">{post.tags}</p> }
+                <span className="post-snippet-date">{post.date}</span>
                 <h3 className="post-snippet-title">{post.title}</h3>
             </Link>
         )
@@ -53,7 +54,7 @@ class PostsIndex extends Component {
         return (
             <div className={(isReadingMode) ? 'PostsIndex reading-mode' : 'PostsIndex'}>
                 {isReadingMode &&
-                    <div className="back-arrow" onClick={toggleReadingMode}>←</div>
+                    <div className="back-arrow" onClick={toggleReadingMode}>→</div>
                 }
                 <div className="posts-container">
                     {allPosts && allPosts.map(this.renderPostSnippet)}
@@ -78,7 +79,6 @@ export default connect(
         getOnePost,
         toggleReadingMode,
         clearActivePost,
-        setPhotoUrl,
-        setHeadingText
+        setLeftPage
     }
 )(PostsIndex)

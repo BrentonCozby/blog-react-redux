@@ -21,6 +21,7 @@
         "pug": "^2.0.0-beta11",
         "react": "^15.5.3",
         "react-dom": "^15.5.3",
+        "react-froala-wysiwyg": "^2.6.1",
         "react-hot-loader": "next",
         "react-redux": "^5.0.4",
         "react-router-dom": "next",

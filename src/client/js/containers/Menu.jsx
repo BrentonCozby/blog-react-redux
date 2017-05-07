@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom'
 import { loginToFirebase, logoutOfFirebase } from '../firebase.js'
 
 import techlaunchLogo from '../../../../assets/images/techlaunch-whitebg.png'
-import { login, logout } from '../actions/index.js'
+import { login, logout, clearActivePost } from '../actions/index.js'
 
 class Menu extends Component {
+
+    static contextTypes = {
+        router: React.PropTypes.object
+    }
 
     state = {
         isMenuVisible: false
@@ -30,8 +34,14 @@ class Menu extends Component {
         })
     }
 
+    onCreatePostClick = () => {
+        this.props.clearActivePost()
+        this.toggleMenu()
+        this.context.router.history.push('/posts/new')
+    }
+
     render() {
-        const { id, name } = this.props
+        const { userId, name } = this.props
         return (
             <div>
                 <div className={(this.state.isMenuVisible) ? 'menu-button close' : 'menu-button'} onClick={this.toggleMenu}>
@@ -42,14 +52,14 @@ class Menu extends Component {
                 <div className={(this.state.isMenuVisible) ? 'Menu visible' : 'Menu'}>
                     <img src={techlaunchLogo} alt="Techlaunch Logo" className="Menu-logo"/>
                     <Link onClick={this.toggleMenu} to={`/posts`} className="Menu-item">All Posts</Link>
-                    {id &&
-                        <Link onClick={this.toggleMenu} to={`/posts/new`} className="Menu-item">Create Post</Link>
+                    {userId &&
+                        <a onClick={this.onCreatePostClick} className="Menu-item">Create Post</a>
                     }
-                    {(id)
+                    {(userId)
                         ? <a onClick={this.logout} className="Menu-item">Logout</a>
                         : <a onClick={this.login} className="Menu-item">Login</a>
                     }
-                    {id &&
+                    {userId &&
                         <p className="Menu-name">Logged in as {name}</p>
                     }
                 </div>
@@ -60,7 +70,7 @@ class Menu extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        id: state.user.id,
+        userId: state.user.id,
         name: state.user.name
     }
 }
@@ -69,6 +79,7 @@ export default connect(
     mapStateToProps,
     {
         login,
-        logout
+        logout,
+        clearActivePost
     }
 )(Menu)

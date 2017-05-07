@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import 'froala-editor/js/froala_editor.pkgd.min.js'
+import 'froala-editor/css/froala_editor.pkgd.min.css'
+import 'font-awesome/css/font-awesome.css'
+import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView'
 
 import {
+    getPosts,
     getOnePost,
     deletePost,
-    setPhotoUrl,
-    setHeadingText,
+    setLeftPage,
     toggleReadingMode
 } from '../actions/index.js'
 import Footer from '../components/Footer.jsx'
@@ -17,11 +22,15 @@ class PostDetail extends Component {
     }
 
     componentWillMount() {
-        this.props.getOnePost(this.props.match.params.id)
-        .then(res => {
-            this.props.setPhotoUrl(this.props.active.image)
-            this.props.setHeadingText(this.props.active.title)
-        })
+        const { getOnePost, match } = this.props
+        getOnePost(match.params.id)
+    }
+
+    componentDidUpdate() {
+        const { active, setLeftPage } = this.props
+        if(active) {
+            setLeftPage(active)
+        }
     }
 
     onDelete = () => {
@@ -32,22 +41,29 @@ class PostDetail extends Component {
     }
 
     render() {
-        const { active, isReadingMode, toggleReadingMode } = this.props
-        let title, tags, content
+        const { userId, active, isReadingMode, toggleReadingMode } = this.props
+        let title, content
         if(active) {
             title = active.title
-            tags = active.tags
             content = active.content
         }
         return (
             <div className={(isReadingMode) ? 'PostDetail reading-mode' : 'PostDetail'}>
                 {isReadingMode &&
-                    <div className="back-arrow" onClick={toggleReadingMode}>←</div>
+                    <div className="back-arrow" onClick={toggleReadingMode}>→</div>
                 }
-                <h2 className="PostDetail-title">{title || null}</h2>
-                <p className="PostDetail-tags">{tags || null}</p>
-                <div className="PostDetail-content">{content || null}</div>
-                <button onClick={this.onDelete} className="delete">Delete</button>
+                <div className="PostDetail-post-container">
+                    {userId && (
+                        <div>
+                            <Link to={`/posts/editor`} className="edit-btn">Edit</Link>
+                            <a onClick={this.onDelete} className="delete-btn">Delete</a>
+                        </div>
+                    )}
+                    <h2 className="PostDetail-title">{title || null}</h2>
+                    <FroalaEditorView
+                        model={content}
+                    />
+                </div>
                 <Footer />
             </div>
         )
@@ -56,6 +72,7 @@ class PostDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userId: state.user.id,
         active: state.posts.active,
         isReadingMode: state.posts.isReadingMode
     }
@@ -64,10 +81,10 @@ const mapStateToProps = (state) => {
 export default connect(
     mapStateToProps,
     {
+        getPosts,
         getOnePost,
         deletePost,
-        setPhotoUrl,
-        setHeadingText,
+        setLeftPage,
         toggleReadingMode
     }
 )(PostDetail)

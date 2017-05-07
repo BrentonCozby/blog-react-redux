@@ -42,31 +42,18 @@
     }
 
     &-date {
-        text-decoration: none;
         position: absolute;
         top: 15px;
-        left: 15px;
-        margin: 0;
-        padding: 4px 8px;
-    }
-
-    &-tags {
-        text-decoration: none;
-        position: absolute;
         right: 15px;
-        top: 15px;
-        background-color: rgba(85, 187, 255, .8);
-        text-shadow: none;
-        padding: 4px 8px;
-        margin: 0;
-        border-radius: 15px;
+        font-size: 12px;
     }
 
     &-title {
-        margin: 0;
         position: absolute;
-        bottom: 15px;
+        bottom: 10px;
         left: 15px;
+        margin: 0;
+        font-size: 22px;
         text-decoration: none;
         font-weight: 400;
     }

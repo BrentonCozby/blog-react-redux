@@ -11,15 +11,20 @@ $main-font: 'Hind', sans-serif;
 }
 
 .back-arrow {
+    display: none;
     position: absolute;
     left: 10px;
-    top: 60px;
+    top: 50px;
     padding: 15px;
     cursor: pointer;
     color: #555;
     font-size: 40px;
     line-height: 1;
     z-index: 1;
+
+    @media all and (min-width: 768px) {
+        display: block;
+    }
 
     &:hover {
         color: $fvi-blue;

@@ -1,6 +1,8 @@
 // @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 @import url('https://fonts.googleapis.com/css?family=Hind:300,400,700');
 
+$main-font: 'Hind', sans-serif;
+
 * {
     box-sizing: border-box;
     position: relative;
@@ -15,5 +17,5 @@ body {
 body {
     margin: 0;
     color: #444;
-    font-family: 'Hind', sans-serif;
+    font-family: $main-font;
 }

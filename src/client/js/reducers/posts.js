@@ -20,10 +20,7 @@ export default function(state = INITAL_STATE, action) {
             }
             return {...state, all: allPosts}
         case 'GET_ONE_POST':
-            let onePost = state.all.find(posts => {
-                return posts.id === action.payload
-            })
-            return {...state, active: onePost}
+            return {...state, active: action.payload}
         case 'DELETE_POST':
             return {...state, active: null}
         case 'CLEAR_ACTIVE_POST':
