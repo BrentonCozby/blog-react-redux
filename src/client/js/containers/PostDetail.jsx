@@ -26,7 +26,7 @@ class PostDetail extends Component {
         getOnePost(match.params.id)
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         const { active, setLeftPage } = this.props
         if(active) {
             setLeftPage(active)
