@@ -1,11 +1,11 @@
-import { db, postsRef } from '../firebase.js'
+import { loadAllPosts, loadOnePost } from '../firebase.js'
 
 export function getPosts() {
     return dispatch => {
-        postsRef.on('value', snapshot => {
+        loadAllPosts().then(posts => {
             dispatch({
                 type: 'GET_POSTS',
-                payload: snapshot.val()
+                payload: posts
             })
         })
     }
@@ -17,10 +17,12 @@ export function createPost(post) {
 
 export function getOnePost(id) {
     return dispatch => {
-        db.ref(`posts/${id}`).on('value', snapshot => {
+        loadOnePost(id).then(post => {
             dispatch({
                 type: 'GET_ONE_POST',
-                payload: {...snapshot.val(), id}
+                payload: (post)
+                    ? {...post, id}
+                    : null
             })
         })
     }

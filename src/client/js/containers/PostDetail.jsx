@@ -11,10 +11,8 @@ import {
     getPosts,
     getOnePost,
     deletePost,
-    setLeftPage,
-    toggleReadingMode
+    setLeftPage
 } from '../actions/index.js'
-import Footer from '../components/Footer.jsx'
 
 class PostDetail extends Component {
 
@@ -23,11 +21,12 @@ class PostDetail extends Component {
     }
 
     componentWillMount() {
+        window.scrollTo(0, 0)
         const { getOnePost, match } = this.props
         getOnePost(match.params.id)
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         const { active, setLeftPage } = this.props
         if(active) {
             setLeftPage(active)
@@ -42,30 +41,31 @@ class PostDetail extends Component {
     }
 
     render() {
-        const { userId, active, isReadingMode, toggleReadingMode } = this.props
+        const { userId, active } = this.props
         let title, content
         if(active) {
             title = active.title
             content = active.content
         }
         return (
-            <div className={(isReadingMode) ? 'PostDetail reading-mode' : 'PostDetail'}>
-                {isReadingMode &&
-                    <div className="back-arrow" onClick={toggleReadingMode}>→</div>
+            <div className="PostDetail">
+                {!active &&
+                    <h2>Post Not Found</h2>
                 }
-                <div className="PostDetail-post-container">
-                    {userId && (
-                        <div>
-                            <Link to={`${rootUrl}/posts/editor`} className="edit-btn">Edit</Link>
-                            <a onClick={this.onDelete} className="delete-btn">Delete</a>
-                        </div>
-                    )}
-                    <h2 className="PostDetail-title">{title || null}</h2>
-                    <FroalaEditorView
-                        model={content}
-                    />
-                </div>
-                <Footer />
+                {active &&
+                    <div className="PostDetail-post-container">
+                        {userId && (
+                            <div>
+                                <Link to={`${rootUrl}/posts/editor`} className="edit-btn">Edit</Link>
+                                <a onClick={this.onDelete} className="delete-btn">Delete</a>
+                            </div>
+                        )}
+                        <h2 className="PostDetail-title">{title || null}</h2>
+                        <FroalaEditorView
+                            model={content}
+                        />
+                    </div>
+                }
             </div>
         )
     }
@@ -74,8 +74,7 @@ class PostDetail extends Component {
 const mapStateToProps = (state) => {
     return {
         userId: state.user.id,
-        active: state.posts.active,
-        isReadingMode: state.posts.isReadingMode
+        active: state.posts.active
     }
 }
 
@@ -85,7 +84,6 @@ export default connect(
         getPosts,
         getOnePost,
         deletePost,
-        setLeftPage,
-        toggleReadingMode
+        setLeftPage
     }
 )(PostDetail)

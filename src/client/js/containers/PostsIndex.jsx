@@ -12,11 +12,11 @@ import {
     clearActivePost,
     setLeftPage
 } from '../actions/index.js'
-import Footer from '../components/Footer.jsx'
 
 class PostsIndex extends Component {
 
     componentWillMount() {
+        window.scrollTo(0, 0)
         this.props.clearActivePost()
         this.props.getPosts()
         this.props.setLeftPage({
@@ -29,10 +29,7 @@ class PostsIndex extends Component {
     render() {
         const { allPosts, isReadingMode, toggleReadingMode } = this.props
         return (
-            <div className={(isReadingMode) ? 'PostsIndex reading-mode' : 'PostsIndex'}>
-                {isReadingMode &&
-                    <div className="back-arrow" onClick={toggleReadingMode}>→</div>
-                }
+            <div className="PostsIndex">
                 <div className="posts-container">
                     {allPosts && allPosts.map(post => (
                         <PostSnippet
@@ -42,7 +39,6 @@ class PostsIndex extends Component {
                         />
                     ))}
                 </div>
-                <Footer />
             </div>
         )
     }

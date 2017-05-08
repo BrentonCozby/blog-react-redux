@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Redirect, Switch } from 'react-router-dom'
 import { rootUrl } from '../../../../config.js'
 
 import Menu from '../containers/Menu.jsx'
+import LeftPage from '../containers/LeftPage.jsx'
+import RightPage from '../containers/RightPage.jsx'
 import PostsIndex from '../containers/PostsIndex.jsx'
 import PostEditor from '../containers/PostEditor.jsx'
 import PostDetail from '../containers/PostDetail.jsx'
 import NoMatch from './NoMatch.jsx'
-import LeftPage from '../containers/LeftPage.jsx'
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <div className="App">
                 <Menu />
                 <LeftPage />
+                <RightPage>
                 <Switch>
                     <Route exact path={`${rootUrl}/`} render={() => (
                         <Redirect to={`${rootUrl}/posts`} />
@@ -25,6 +27,7 @@ class App extends Component {
                     <Route exact path={`${rootUrl}/posts/:id`} component={PostDetail} />
                     <Route component={NoMatch}/>
                 </Switch>
+                </RightPage>
             </div>
         )
     }

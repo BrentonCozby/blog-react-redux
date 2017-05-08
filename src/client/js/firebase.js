@@ -20,9 +20,17 @@ export function saveNewPost(post) {
     postsRef.push(post)
 }
 
-export function loadPosts() {
+export function loadAllPosts() {
     return new Promise((resolve, reject) => {
-        postsRef.limitToLast(20).on('value', function(snapshot) {
+        postsRef.limitToLast(100).on('value', function(snapshot) {
+            resolve(snapshot.val())
+        })
+    })
+}
+
+export function loadOnePost(id) {
+    return new Promise((resolve, reject) => {
+        postsRef.child(id).on('value', function(snapshot) {
             resolve(snapshot.val())
         })
     })

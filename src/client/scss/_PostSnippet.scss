@@ -14,7 +14,6 @@
     @media all and (min-width: 768px) {
         width: calc(50% - 30px);
         padding-bottom: 50%;
-        max-width: 500px;
     }
 
     &:hover,
@@ -52,5 +51,22 @@
         @media all and (min-width: 1400px) {
             font-size: 26px;
         }
+    }
+}
+
+.reading-mode .PostSnippet {
+
+    @media all and (min-width: 768px) {
+        width: calc(50% - 30px);
+    }
+
+    @media all and (min-width: 1170px) {
+        width: calc(33% - 30px);
+        padding-bottom: 30%;
+    }
+
+    @media all and (min-width: 1400px) {
+        width: calc(25% - 30px);
+        padding-bottom: 22%;
     }
 }

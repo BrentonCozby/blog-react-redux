@@ -107,7 +107,6 @@ class PostEditor extends Component {
                         onModelChange={this.handleEditorChange}
                     />
                 </form>
-                <Footer />
             </div>
         )
     }

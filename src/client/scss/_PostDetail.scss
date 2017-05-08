@@ -1,20 +1,5 @@
 .PostDetail {
     width: 100%;
-    padding: 20px;
-    padding-bottom: 170px;
-    min-height: 100vh;
-
-    @media all and (min-width: 786px) {
-        padding: 40px;
-        padding-bottom: 170px;
-        width: 50%;
-        position: absolute;
-        right: 0;
-
-        &.reading-mode {
-            width: 100%;
-        }
-    }
 
     &-post-container {
         max-width: 600px;
@@ -28,24 +13,6 @@
 
     &-title {
         font-size: 38px;
-        text-align: center;
-    }
-}
-
-.PostDetail.reading-mode {
-
-    .PostDetail-post-container {
-        max-width: 800px;
-        margin: auto;
-        line-height: 1.5;
-
-        p, a, li {
-            font-size: 22px;
-        }
-    }
-
-    .PostDetail-title {
-        font-size: 54px;
         text-align: center;
     }
 }
@@ -68,4 +35,22 @@
 .PostDetail .delete-btn {
     background-color: rgba(255, 20, 0, .3);
     margin-left: 10px;
+}
+
+.reading-mode .PostDetail {
+
+    .PostDetail-post-container {
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.5;
+
+        p, a, li {
+            font-size: 22px;
+        }
+    }
+
+    .PostDetail-title {
+        font-size: 54px;
+        text-align: center;
+    }
 }
