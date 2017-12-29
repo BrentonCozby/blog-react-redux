@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import techlaunchLogo from 'images/techlaunch-blackbg.png'
-import defaultPhoto from 'images/defaultPhoto.jpg'
 import xButton from 'images/x.png'
 
 import { toggleReadingMode } from 'actions/index.js'
@@ -12,7 +11,7 @@ const setPhoto = (url) => ({
     backgroundImage: `
         linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, .8) 100%),
         linear-gradient(rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, 0) 30%),
-        url(${url})
+        url(${url || 'images/defaultPhoto.jpg'})
     `
 })
 
@@ -23,7 +22,7 @@ class LeftPage extends Component {
         return (
             <section
                 className={(isReadingMode) ? 'LeftPage reading-mode' : 'LeftPage'}
-                style={setPhoto(photoUrl || defaultPhoto)}
+                style={setPhoto(photoUrl)}
             >
                 <div className="top">
                     <Link to={PP}><img src={techlaunchLogo} alt="Techlaunch logo" className="logo"/></Link>

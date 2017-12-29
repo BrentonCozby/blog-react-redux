@@ -1,4 +1,4 @@
-import { loadAllPosts, loadOnePost } from '../firebase.js'
+import { db, loadAllPosts, loadOnePost } from 'js/firebase.js'
 
 export function getPosts() {
     return dispatch => {
