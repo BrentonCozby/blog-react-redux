@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import reduxPromise from 'redux-promise'
 import thunk from 'redux-thunk'
 
-import rootReducer from './reducers'
+import rootReducer from './reducers/index.js'
 
 const createStoreWithMiddleware = applyMiddleware(
     reduxPromise,
@@ -14,7 +14,7 @@ export default function configStore(initialState) {
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
-        module.hot.accept('./reducers', () => {
+        module.hot.accept('./reducers/index.js', () => {
             const nextRootReducer = require('./reducers/index.js').default
             store.replaceReducer(nextRootReducer)
         })

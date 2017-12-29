@@ -3,7 +3,6 @@ import {
 } from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import ResourceHintsPlugin from 'resource-hints-webpack-plugin'
-import FaviconsPlugin from 'favicons-webpack-plugin'
 import { resolve } from 'path'
 
 import { Dir } from '../config.js'

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { AppContainer as ReactHotLoader } from 'react-hot-loader'
 
-import { PP } from '../../config.js'
 import configStore from './store.js'
 import App from 'components/App.jsx'
 import 'css/index.scss'
