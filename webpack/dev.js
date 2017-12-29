@@ -4,7 +4,7 @@ import {
     NamedModulesPlugin
 } from 'webpack'
 
-import { Dir } from '../config.js'
+import { Dir, PP } from '../config.js'
 
 export default {
     entry: {
@@ -13,7 +13,7 @@ export default {
             'webpack-dev-server/client?http://localhost:8080',
             'webpack/hot/only-dev-server',
             'babel-polyfill',
-            resolve(Dir.client, 'js', 'index.jsx')
+            resolve(Dir.js, 'index.jsx')
         ]
     },
     output: {
@@ -28,9 +28,9 @@ export default {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['env', {modules: false}],
+                            ['env', { modules: false }],
                             'react',
-                            'stage-2'
+                            'stage-0'
                         ],
                         plugins: [
                             'react-hot-loader/babel'
@@ -41,13 +41,12 @@ export default {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             }, {
-                test: /\.(jpe?g|png|gif|svg|ico)$/,
+                test: /\.(jpg|jpeg|png|gif|svg|ico)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
                         limit: 40000,
-                        name: '[name].[ext]',
-                        outputPath: 'images/'
+                        name: '[path][name].[ext]',
                     }
                 }]
             }
@@ -57,10 +56,10 @@ export default {
         new HotModuleReplacementPlugin(),
         new NamedModulesPlugin()
     ],
-    devServer : {
+    devServer: {
         hot: true,
         contentBase: Dir.dist,
-        publicPath: '/',
+        publicPath: PP,
         historyApiFallback: true
     },
     devtool: 'eval'

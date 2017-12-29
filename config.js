@@ -1,17 +1,30 @@
 import { resolve } from 'path'
 
-const rootUrl = (process.env.NODE_ENV === 'development') ? '' : '/blog-react-redux'
+// Use the following variables in src/views. They are made available in
+// build-tools/ejs-to-html.js in the 'transformer' function
 
-const Dir = {
+// PP (public path) must begin and end with '/' unless it is just '/'
+export const PP = process.env.NODE_ENV === 'production'
+  ? '/'
+  : '/'
+export const SITE_TITLE = 'Blog React Redux'
+export const SITE_NAME = 'blog-react-redux'
+export const DESCRIPTION = 'A Blog example app made with React and redux'
+export const SITE_URL = 'http://blog-react-redux.s3-website-us-west-2.amazonaws.com/'
+export const SITE_IMAGE = ''
+export const DEVELOPER_NAME = 'Brenton Cozby'
+export const DEVELOPER_URL = 'https://brentoncozby.com'
+export const GOOGLE_ANALYTICS_ID = ''
+export const DEV_PATH = __dirname
+
+export const Dir = {
+  dist: resolve(__dirname, 'dist'),
   src: resolve(__dirname, 'src'),
-  client: resolve(__dirname, 'src', 'client'),
+  css: resolve(__dirname, 'src', 'css'),
+  js: resolve(__dirname, 'src', 'js'),
+  static: resolve(__dirname, 'src', 'static'),
+  images: resolve(__dirname, 'src', 'static', 'images'),
   views: resolve(__dirname, 'src', 'views'),
   pages: resolve(__dirname, 'src', 'views', 'pages'),
-  dist: resolve(__dirname, 'dist'),
-  assets: resolve(__dirname, 'assets'),
-  images: resolve(__dirname, 'assets', 'images')
+  partials: resolve(__dirname, 'src', 'views', 'partials'),
 }
-
-
-
-export { Dir, rootUrl }

@@ -1,0 +1,32 @@
+$fvi-blue: #5bf;
+$dark-blue: #048;
+$main-font: 'Hind', sans-serif;
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.back-arrow {
+    display: none;
+    position: fixed;
+    left: 10px;
+    top: 50px;
+    padding: 15px;
+    cursor: pointer;
+    color: #555;
+    font-size: 40px;
+    line-height: 1;
+    z-index: 1;
+
+    @media all and (min-width: 768px) {
+        display: block;
+    }
+
+    &:hover {
+        color: $fvi-blue;
+    }
+}

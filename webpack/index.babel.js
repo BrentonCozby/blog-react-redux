@@ -1,14 +1,10 @@
 import { resolve } from 'path'
-import {
-    DefinePlugin,
-    NoEmitOnErrorsPlugin,
-    ProvidePlugin
-} from 'webpack'
+import { DefinePlugin } from 'webpack'
 import merge from 'webpack-merge'
 import HtmlPlugin from 'html-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
 
-import { Dir } from '../config.js'
+import * as config from '../config.js'
 import devConfig from './dev.js'
 import prodConfig from './prod.js'
 
@@ -17,8 +13,8 @@ const env = (TARGET === 'dev') ? 'dev' : 'prod'
 
 let common = {
     output: {
-        path: Dir.dist,
-        publicPath: '/'
+        path: config.Dir.dist,
+        publicPath: config.PP
     },
     module: {
         rules: [
@@ -28,8 +24,7 @@ let common = {
                     loader: 'url-loader',
                     options: {
                         limit: 100000,
-                        name: '[name].[ext]',
-                        outputPath: 'fonts/'
+                        name: '[path][name].[ext]'
                     }
                 }
             }, {
@@ -44,38 +39,60 @@ let common = {
     plugins: [
         new HtmlPlugin({
             filename: 'index.html',
-            template: resolve(Dir.views, 'pages', 'index.pug')
+            template: resolve(config.Dir.views, 'pages', 'index.pug'),
+            ...config,
+            env: process.env.NODE_ENV
         }),
         new DefinePlugin({
             'process.env': {
-               'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-            }
-        }),
-        new ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
+                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            },
+            PP: JSON.stringify(config.PP),
+            SITE_TITLE: JSON.stringify(config.SITE_TITLE),
+            SITE_NAME: JSON.stringify(config.SITE_NAME),
+            DESCRIPTION: JSON.stringify(config.DESCRIPTION),
+            SITE_URL: JSON.stringify(config.SITE_URL),
+            SITE_IMAGE: JSON.stringify(config.SITE_IMAGE),
+            DEVELOPER_NAME: JSON.stringify(config.DEVELOPER_NAME),
+            DEVELOPER_URL: JSON.stringify(config.DEVELOPER_URL),
+            GOOGLE_ANALYTICS_ID: JSON.stringify(config.GOOGLE_ANALYTICS_ID),
+            DEV_PATH: JSON.stringify(config.DEV_PATH)
         }),
         new CopyPlugin([
-            {from: resolve(Dir.client, 'humans.txt')},
-            {from: resolve(Dir.client, 'robots.txt')}
-        ])
+            { from: config.Dir.static, to: config.Dir.dist }
+        ]),
     ],
     resolve: {
         modules: [
-            Dir.src,
+            config.Dir.src,
             'node_modules'
-        ]
+        ],
+        alias:{
+            actions: resolve(config.Dir.js, 'actions'),
+            components: resolve(config.Dir.js, 'components'),
+            containers: resolve(config.Dir.js, 'containers'),
+            reducers: resolve(config.Dir.js, 'reducers'),
+            dist: config.Dir.dist,
+            src: config.Dir.src,
+            css: config.Dir.css,
+            js: config.Dir.js,
+            static: config.Dir.static,
+            images: config.Dir.images,
+            views: config.Dir.views,
+            pages: config.Dir.pages,
+            partials: config.Dir.partials,
+        }
     }
 }
 
-let config;
+let webpackConfig
 
-if(env === 'dev') {
-    config = merge(common, devConfig)
+if (env === 'dev') {
+    webpackConfig = merge(common, devConfig)
 }
 
-if(env === 'prod') {
-    config = merge(common, prodConfig)
+if (env === 'prod') {
+    webpackConfig = merge(common, prodConfig)
 }
 
-export default config
+export default webpackConfig
