@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 const config = {
-    apiKey: "AIzaSyB3cduBYdQE5UfRFCziBrV2xBQQDNiJdIg",
+    apiKey: "",
     authDomain: "blog-react-redux.firebaseapp.com",
     databaseURL: "https://blog-react-redux.firebaseio.com",
     projectId: "blog-react-redux",
